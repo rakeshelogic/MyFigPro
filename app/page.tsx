@@ -1,10 +1,14 @@
 import Live from "@/components/Live";
-import { Room } from "./Room";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <div>
-      <Live />
-    </div>
+    <main className="h-[100dvh] overflow-hidden">
+      <Navbar />
+
+      <section className="flex h-[100dvh] flex-row">
+        <Live />
+      </section>
+    </main>
   );
 }

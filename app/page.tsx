@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fabric } from "fabric";
 import {
   handleCanvasMouseDown,
@@ -12,6 +12,7 @@ import LeftSideBar from "@/components/LeftSideBar";
 import Live from "@/components/Live";
 import Navbar from "@/components/Navbar";
 import RightSideBar from "@/components/RightSideBar";
+import { ActiveElement } from "@/types/type";
 
 function Page() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -19,6 +20,17 @@ function Page() {
   const isDrawing = useRef(false);
   const shapeRef = useRef<fabric.Object | null>(null);
   const selectedShapeRef = useRef<string | null>("rectangle");
+
+  const [activeElement, setActiveElement] = useState<ActiveElement>({
+    name: "",
+    value: "",
+    icon: "",
+  });
+
+  const handleActiveElement = (element: ActiveElement) => {
+    setActiveElement(element);
+    selectedShapeRef.current = element?.value as string;
+  };
 
   useEffect(() => {
     const canvas = initializeFabric({ canvasRef, fabricRef });
@@ -40,7 +52,10 @@ function Page() {
 
   return (
     <main className="h-[100dvh] overflow-hidden">
-      <Navbar />
+      <Navbar
+        activeElement={activeElement}
+        handleActiveElement={handleActiveElement}
+      />
 
       <section className="flex h-full flex-row">
         <LeftSideBar />

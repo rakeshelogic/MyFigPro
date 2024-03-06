@@ -43,7 +43,12 @@ function RightSideBar({
         handleInputChange={handleInputChange}
         isEditingRef={isEditingRef}
       />
-      <Text />
+      <Text
+        fontSize={elementAttributes.fontSize}
+        fontWeight={elementAttributes.fontWeight}
+        fontFamily={elementAttributes.fontFamily}
+        handleInputChange={handleInputChange}
+      />
       <Color />
       <Color />
       <Export />

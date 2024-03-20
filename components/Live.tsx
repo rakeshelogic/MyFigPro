@@ -16,7 +16,7 @@ import {
 
 import LiveCursors from "./cursor/LiveCursors";
 import { useCallback, useEffect, useState } from "react";
-import { CursorMode, CursorState, Reaction, ReactionEvent } from "@/types/type";
+import { CursorMode, CursorState, Reaction } from "@/types/type";
 import CursorChat from "./cursor/CursorChat";
 import ReactionSelector from "./reaction/ReactionButton";
 import FlyingReaction from "./reaction/FlyingReaction";
@@ -36,8 +36,7 @@ function Live({ canvasRef, undo, redo }: Props) {
   });
   const [reaction, setReaction] = useState<Reaction[]>([]);
 
-  const others = useOthers();
-  const [{ cursor }, updateMyPresence] = useMyPresence() as any;
+  const [{ cursor }, updateMyPresence] = useMyPresence();
   const broadcast = useBroadcastEvent();
 
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
@@ -154,7 +153,7 @@ function Live({ canvasRef, undo, redo }: Props) {
 
   // Listen to reactions from others
   useEventListener((eventData) => {
-    const event = eventData.event as ReactionEvent;
+    const event = eventData.event;
 
     setReaction((reactions) =>
       reactions.concat([
@@ -232,7 +231,7 @@ function Live({ canvasRef, undo, redo }: Props) {
           <ReactionSelector setReaction={setReactions} />
         )}
 
-        <LiveCursors others={others} />
+        <LiveCursors />
 
         <Comments />
       </ContextMenuTrigger>

@@ -5,7 +5,6 @@ import {
   useBroadcastEvent,
   useEventListener,
   useMyPresence,
-  useOthers,
 } from "@/liveblocks.config";
 import {
   ContextMenu,

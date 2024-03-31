@@ -10,8 +10,8 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Figma Clone",
-  description: "A Figma clone built with Liveblocks and Next.js",
+  title: "FigPro",
+  description: "A FigPro built with Liveblocks and Next.js",
 };
 
 export default function RootLayout({

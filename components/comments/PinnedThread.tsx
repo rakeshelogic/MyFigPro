@@ -28,6 +28,14 @@ function PinnedThread({ thread, onFocus, ...props }: Props) {
    * useMemo: https://react.dev/reference/react/useMemo
    */
 
+  const randomAvatar = useMemo(
+    () =>
+      `https://liveblocks.io/avatars/avatar-${Math.floor(
+        Math.random() * 30
+      )}.png`,
+    [thread.comments.length]
+  );
+
   const memoizedContent = useMemo(
     () => (
       <div
@@ -53,9 +61,7 @@ function PinnedThread({ thread, onFocus, ...props }: Props) {
           data-draggable={true}
         >
           <Image
-            src={`https://liveblocks.io/avatars/avatar-${Math.floor(
-              Math.random() * 30
-            )}.png`}
+            src={randomAvatar}
             alt="Dummy Name"
             width={28}
             height={28}

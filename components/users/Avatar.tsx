@@ -19,6 +19,8 @@ export function Avatar({
         )}.png`}
         alt={name}
         fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
+        s
         className={styles.avatar_picture}
       />
     </div>

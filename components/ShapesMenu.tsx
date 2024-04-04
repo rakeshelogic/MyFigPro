@@ -34,6 +34,7 @@ const ShapesMenu = ({
               src={isDropdownElem ? activeElement.icon : item.icon}
               alt={item.name}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
               className={isDropdownElem ? "invert" : ""}
             />
           </Button>

@@ -27,11 +27,12 @@ function Navbar({
       <Image src="/assets/logo.svg" alt="FigPro Logo" width={58} height={20} />
 
       <ul className="flex">
+        {/* Renders nav elements */}
         {navElements.map((item: ActiveElement | any) => (
           <li
             key={item.name}
             onClick={() => {
-              if (Array.isArray(item.value)) return;
+              if (Array.isArray(item.value)) return; // Prevents selection of shapes menu
               handleActiveElement(item);
             }}
             className={`group px-2.5 py-5 flex justify-center items-center
@@ -42,7 +43,7 @@ function Navbar({
           }
           `}
           >
-            {Array.isArray(item.value) ? (
+            {Array.isArray(item.value) ? ( // Renders shapes menu
               <ShapesMenu
                 item={item}
                 activeElement={activeElement}
@@ -50,23 +51,26 @@ function Navbar({
                 handleActiveElement={handleActiveElement}
                 handleImageUpload={handleImageUpload}
               />
-            ) : item.value === "comments" ? (
+            ) : item.value === "comments" ? ( // Renders comments cursor
               <NewThread>
                 <Button className="relative w-5 h-5 object-contain">
                   <Image
                     src={item.icon}
                     alt={item.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
                     className={isActive(item.value) ? "invert" : ""}
                   />
                 </Button>
               </NewThread>
             ) : (
+              // Renders other nav elements
               <Button className="relative w-5 h-5 object-contain">
                 <Image
                   src={item.icon}
                   alt={item.name}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
                   className={isActive(item.value) ? "invert" : ""}
                 />
               </Button>

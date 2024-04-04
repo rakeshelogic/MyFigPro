@@ -50,8 +50,8 @@ function App() {
     fontSize: "",
     fontFamily: "",
     fontWeight: "",
-    fill: "",
-    stroke: "#aabbcc",
+    fill: "#aabbcc",
+    stroke: "#000000",
   });
 
   const syncShapeInStorage = useMutation(({ storage }, object) => {

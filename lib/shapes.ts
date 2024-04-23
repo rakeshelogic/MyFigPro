@@ -157,8 +157,6 @@ export const modifyShape = ({
   // set selectedElement to activeObjectRef
   activeObjectRef.current = selectedElement;
 
-  console.log("see", activeObjectRef.current, selectedElement);
-
   syncShapeInStorage(selectedElement);
 };
 

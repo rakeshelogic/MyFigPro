@@ -65,6 +65,7 @@ export const handleCanvasMouseDown = ({
     isDrawing.current = true;
     canvas.isDrawingMode = true;
     canvas.freeDrawingBrush.width = 5;
+    canvas.freeDrawingBrush.color = "#aabbcc";
     return;
   }
 

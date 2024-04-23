@@ -44,6 +44,7 @@ export const handleCanvasMouseDown = ({
   selectedShapeRef,
   isDrawing,
   shapeRef,
+  setElementAttributes,
 }: CanvasMouseDown) => {
   // get pointer coordinates
   const pointer = canvas.getPointer(options.e);
@@ -99,6 +100,46 @@ export const handleCanvasMouseDown = ({
       // add: http://fabricjs.com/docs/fabric.Canvas.html#add
       canvas.add(shapeRef.current);
     }
+  }
+
+  const selectedElement = target as fabric.Object;
+
+  // if only one element is selected, set element attributes
+  if (selectedElement) {
+    // calculate scaled dimensions of the object
+    const scaledWidth = selectedElement?.scaleX
+      ? selectedElement?.width! * selectedElement?.scaleX
+      : selectedElement?.width;
+
+    const scaledHeight = selectedElement?.scaleY
+      ? selectedElement?.height! * selectedElement?.scaleY
+      : selectedElement?.height;
+
+    setElementAttributes({
+      width: scaledWidth?.toFixed(0).toString() || "",
+      height: scaledHeight?.toFixed(0).toString() || "",
+      fill: selectedElement?.fill?.toString() || "",
+      stroke: selectedElement?.stroke || "",
+      // @ts-ignore
+      fontSize: selectedElement?.fontSize || "",
+      // @ts-ignore
+      fontFamily: selectedElement?.fontFamily || "",
+      // @ts-ignore
+      fontWeight: selectedElement?.fontWeight || "",
+    });
+  } else {
+    setElementAttributes({
+      width: "0",
+      height: "0",
+      fill: "#aabbcc",
+      stroke: "#000000",
+      // @ts-ignore
+      fontSize: "",
+      // @ts-ignore
+      fontFamily: "",
+      // @ts-ignore
+      fontWeight: "",
+    });
   }
 };
 
@@ -203,6 +244,7 @@ export const handleCanvasMouseUp = ({
 export const handleCanvasObjectModified = ({
   options,
   syncShapeInStorage,
+  setElementAttributes,
 }: CanvasObjectModified) => {
   const target = options.target;
   if (!target) return;
@@ -211,6 +253,33 @@ export const handleCanvasObjectModified = ({
     // fix this
   } else {
     syncShapeInStorage(target);
+  }
+
+  const selectedElement = target as fabric.Object;
+
+  // if only one element is selected, set element attributes
+  if (selectedElement) {
+    // calculate scaled dimensions of the object
+    const scaledWidth = selectedElement?.scaleX
+      ? selectedElement?.width! * selectedElement?.scaleX
+      : selectedElement?.width;
+
+    const scaledHeight = selectedElement?.scaleY
+      ? selectedElement?.height! * selectedElement?.scaleY
+      : selectedElement?.height;
+
+    setElementAttributes({
+      width: scaledWidth?.toFixed(0).toString() || "",
+      height: scaledHeight?.toFixed(0).toString() || "",
+      fill: selectedElement?.fill?.toString() || "",
+      stroke: selectedElement?.stroke || "",
+      // @ts-ignore
+      fontSize: selectedElement?.fontSize || "",
+      // @ts-ignore
+      fontFamily: selectedElement?.fontFamily || "",
+      // @ts-ignore
+      fontWeight: selectedElement?.fontWeight || "",
+    });
   }
 };
 

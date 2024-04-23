@@ -121,7 +121,7 @@ export const handleCanvasMouseDown = ({
       fill: selectedElement?.fill?.toString() || "",
       stroke: selectedElement?.stroke || "",
       // @ts-ignore
-      fontSize: selectedElement?.fontSize.toString() || "",
+      fontSize: selectedElement?.fontSize?.toString() || "",
       // @ts-ignore
       fontFamily: selectedElement?.fontFamily || "",
       // @ts-ignore
@@ -274,7 +274,7 @@ export const handleCanvasObjectModified = ({
       fill: selectedElement?.fill?.toString() || "",
       stroke: selectedElement?.stroke || "",
       // @ts-ignore
-      fontSize: selectedElement?.fontSize.toString() || "",
+      fontSize: selectedElement?.fontSize?.toString() || "",
       // @ts-ignore
       fontFamily: selectedElement?.fontFamily || "",
       // @ts-ignore
@@ -371,7 +371,7 @@ export const handleCanvasSelectionCreated = ({
       fill: selectedElement?.fill?.toString() || "",
       stroke: selectedElement?.stroke || "",
       // @ts-ignore
-      fontSize: selectedElement?.fontSize.toString() || "",
+      fontSize: selectedElement?.fontSize?.toString() || "",
       // @ts-ignore
       fontFamily: selectedElement?.fontFamily || "",
       // @ts-ignore

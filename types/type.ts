@@ -123,6 +123,7 @@ export type CanvasMouseDown = {
   selectedShapeRef: any;
   isDrawing: React.MutableRefObject<boolean>;
   shapeRef: React.MutableRefObject<fabric.Object | null>;
+  setElementAttributes: React.Dispatch<React.SetStateAction<Attributes>>;
 };
 
 export type CanvasMouseMove = {
@@ -147,6 +148,7 @@ export type CanvasMouseUp = {
 export type CanvasObjectModified = {
   options: fabric.IEvent;
   syncShapeInStorage: (shape: fabric.Object) => void;
+  setElementAttributes: React.Dispatch<React.SetStateAction<Attributes>>;
 };
 
 export type CanvasPathCreated = {

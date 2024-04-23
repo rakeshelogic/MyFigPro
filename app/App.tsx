@@ -69,7 +69,10 @@ function App() {
     const canvasObjects = storage.get("canvasObjects");
     if (!canvasObjects || canvasObjects.size === 0) return;
 
-    for (const [key, value] of canvasObjects.entries()) {
+    // Convert canvasObjects.entries() to an array before iterating
+    const entriesArray = Array.from(canvasObjects.entries());
+
+    for (const [key, value] of entriesArray) {
       canvasObjects.delete(key);
     }
 
@@ -125,6 +128,7 @@ function App() {
         isDrawing,
         shapeRef,
         selectedShapeRef,
+        setElementAttributes,
       });
     });
     canvas.on("mouse:move", (options) => {
@@ -152,6 +156,7 @@ function App() {
       handleCanvasObjectModified({
         options,
         syncShapeInStorage,
+        setElementAttributes,
       });
     });
     canvas.on("selection:created", (options) => {
@@ -190,9 +195,34 @@ function App() {
     });
 
     return () => {
+      /**
+       * dispose is a method provided by Fabric that allows you to dispose
+       * the canvas. It clears the canvas and removes all the event
+       * listeners
+       *
+       * dispose: http://fabricjs.com/docs/fabric.Canvas.html#dispose
+       */
       canvas.dispose();
+
+      // remove the event listeners
+      window.removeEventListener("resize", () => {
+        handleResize({
+          canvas: null,
+        });
+      });
+
+      window.removeEventListener("keydown", (e) =>
+        handleKeyDown({
+          e,
+          canvas: fabricRef.current,
+          undo,
+          redo,
+          syncShapeInStorage,
+          deleteShapeFromStorage,
+        })
+      );
     };
-  }, []);
+  }, [canvasRef]); // run this effect only once when the component mounts and the canvasRef changes
 
   useEffect(() => {
     renderCanvas({ fabricRef, canvasObjects, activeObjectRef });

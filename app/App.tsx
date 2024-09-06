@@ -8,6 +8,7 @@ import {
   handleCanvasObjectModified,
   handleCanvasObjectScaling,
   handleCanvasSelectionCreated,
+  handleCanvasZoom,
   handleCanvaseMouseMove,
   handlePathCreated,
   handleResize,
@@ -181,6 +182,10 @@ function App() {
 
     window.addEventListener("resize", () => {
       handleResize({ canvas: fabricRef.current });
+    });
+
+    window.addEventListener("wheel", (event) => {
+      handleCanvasZoom({ canvas: fabricRef.current!, options: { e: event } });
     });
 
     window.addEventListener("keydown", (e) => {

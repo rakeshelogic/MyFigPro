@@ -79,7 +79,7 @@ Be sure to replace `*YOUR LIVEBLOCKS API PUBLIC KEY*` with your actual LiveBlock
 1. Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/Shivam-Sharma-1/FigPro.git
+git clone https://github.com/brunoDev100/myFigPro.git
 ```
 
 2. Change to the project directory:
@@ -116,7 +116,7 @@ figpro/
 
 ## Author
 
-- [@Shivam-Sharma-1](https://github.com/Shivam-Sharma-1)
+- [@brunoDev100](https://github.com/brunoDev100)
 
 ## Documentation
 
